@@ -1,5 +1,6 @@
+import { deleteContact } from "@/lib/actions";
 import Link from "next/link";
-import { IoAddSharp } from "react-icons/io5";
+import { IoAddSharp, IoPencil, IoTrashOutline } from "react-icons/io5";
 
 export function CreateButton() {
   return (
@@ -11,4 +12,24 @@ export function CreateButton() {
       Create
     </Link>
   );
+}
+
+export function DeleteButton({ id }: { id: number }) {
+  const DeleteContactById = deleteContact.bind(null, id)
+
+  return (
+    <form action={DeleteContactById}>
+      <button className="rounded-md border p-1 hover:bg-gray-100">
+        <IoTrashOutline size={20} />
+      </button>
+    </form>
+  )
+}
+
+export function EditButton () {
+  return (
+    <Link href={"/contacts/edit"} className="rounded-md border p-1 hover:bg-gray-100">
+      <IoPencil size={20} />
+    </Link>
+  )
 }
